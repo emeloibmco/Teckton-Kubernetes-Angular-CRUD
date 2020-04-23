@@ -1,0 +1,6 @@
+[submodule "Tekton_Back"]
+	path = Tekton_Back
+	url = https://github.com/MGsus/Tekton_Back
+[submodule "Tekton_Front"]
+	path = Tekton_Front
+	url = https://github.com/MGsus/Tekton_Front
