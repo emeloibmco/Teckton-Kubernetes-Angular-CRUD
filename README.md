@@ -85,6 +85,6 @@ Para este caso vamos a desplegar la base de datos en un pod separado a nuestra a
 
 ### Desplegar nuestra aplicación con Tekton
 
-<p align=center><img src=".github/tekton-pipelines.png" style="width: 48px; height: 48px;">
+<p align=center><img src=".github/tekton-pipelines.png" height="48">
 
 Para desplegar nuestra aplicación de Backend, nos dirigimos al repositorio Tekton_Back, que se encuentra enlazado como submodulo, donde podemos encontrar la carpeta .tekton, la carpeta scripts, el archivo deployment.yml y el archivo Dockerfile, recursos que utilizará Tekton para realizar el despliegue.
