@@ -81,11 +81,10 @@ Para este caso vamos a desplegar la base de datos en un pod separado a nuestra a
 
   Con la IP y el puerto editamos el archivo database.ts ubicado en la carpeta **Tekton_Back/src**, modificando las lineas de conexión con la base de datos, como en la siguiente imagen:
 
-  ![base de datos](.github\base_de_datos.png)
+  ![base de datos](.github/base_de_datos.png)
 
 ### Desplegar nuestra aplicación con Tekton
 
-<p align=center><img src=".github\tekton-pipelines.png" style="width: 48px;">
-
+<p align=center><img src=".github/tekton-pipelines.png" style="width: 48px; height: 48px;">
 
 Para desplegar nuestra aplicación de Backend, nos dirigimos al repositorio Tekton_Back, que se encuentra enlazado como submodulo, donde podemos encontrar la carpeta .tekton, la carpeta scripts, el archivo deployment.yml y el archivo Dockerfile, recursos que utilizará Tekton para realizar el despliegue.
