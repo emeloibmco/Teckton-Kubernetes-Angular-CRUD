@@ -14,7 +14,7 @@ El repositorio se encuentra organizado en dos submodulos, Tekton_Back y Tekton_F
 
 ## Requisitos
 
-- Tener un servicio de **[Kubernetes Cluster]()** disponible en la cuenta IBM Cloud. Para cuentas Lite este servicio está disponible por 30 días.
+- Tener un servicio de **[Kubernetes Cluster](https://cloud.ibm.com/kubernetes/clusters)** disponible en la cuenta IBM Cloud. Para cuentas Lite este servicio está disponible por 30 días.
 - :cloud: [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started&locale=en)
 - :whale: [Docker](https://www.docker.com/products/docker-desktop)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/). La version de esta herramienta debe ser compatible con la version de IKS que se desplegó en la cuenta.
