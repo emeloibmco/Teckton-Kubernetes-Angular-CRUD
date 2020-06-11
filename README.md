@@ -134,7 +134,9 @@ Escoger en tipo de pipeline, Tekton
 
 Así deberá quedar el Toolchain:
 
- <p align=center><img src=".github/devops-tool.png"></p>
+<p align=center><img src=".github/devops-tool.png"></p>
+
+**Nota:** no es necesario que aparezca el cuadro Delivery Pipeline Private Worker ya que este aplica para la sección adicional al final del documento
 
 Ahora debemos enlazar el repositorio de la aplicación y el Worker que vamos a usar, con el Pipeline creado en el paso anterior. Para eso ingresamos a nuestro Delivery Pipeline.
 
@@ -146,7 +148,7 @@ Una vez añadido deberá aparecer la definición de nuestro repositorio y guarda
 
 Ahora vamos a la pestaña de Worker, donde seleccionaremos el worker público que provee IBM Cloud.
 
-**Importante: para utilizar un Private Worker, encontrará los pasos en la sección opcional, Private Worker.**
+**Importante: para utilizar un Private Worker encontrará los pasos en la sección dedicada al final del documento**
 
 ### <p align=center><img src=".github/devops-tekworker.png"></p>
 
