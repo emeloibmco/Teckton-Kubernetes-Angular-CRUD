@@ -16,7 +16,7 @@ El repositorio se encuentra organizado en dos submodulos, Tekton_Back y Tekton_F
    3.1 [Plugins](#-instalar-o-actualizar-los-plugins-necesarios-de-ibm-cloud-cli)<br>
    3.2 [Despliegue de la base de datos](#-desplegar-la-imagen-de-nuestra-base-de-datos)<br>
    3.3 [Depliegue de la aplicación con Tekton](#-desplegar-nuestra-aplicación-con-tekton)<br>
-4. [Extras: Private Worker](#-extras:-private-worker)
+4. [Extras: Private Worker](#extras-private-worker)
 5. [Referencias y documentación útil](#referencias-y-documentación-útil)
 
 ## 📦 Arquitectura
