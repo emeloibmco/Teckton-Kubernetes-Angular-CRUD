@@ -8,9 +8,20 @@ Con Tekton aseguramos el despliegue en un cluster de Kubernetes con la opción d
 
 El repositorio se encuentra organizado en dos submodulos, Tekton_Back y Tekton_Front, cada uno con la respectiva parte de la aplicación.
 
-## :package: Arquitectura
+## 📑 Tabla de contenido
 
-![arquitectura](https://link)
+1. [Arquitectura](#-arquitectura)
+2. [Requisitos](#-requisitos)
+3. [Hands On!](#-hands-on)<br>
+   3.1 [Plugins](#-instalar-o-actualizar-los-plugins-necesarios-de-ibm-cloud-cli)<br>
+   3.2 [Despliegue de la base de datos](#-desplegar-la-imagen-de-nuestra-base-de-datos)<br>
+   3.3 [Depliegue de la aplicación con Tekton](#-desplegar-nuestra-aplicación-con-tekton)<br>
+4. [Extras: Private Worker](#-extras:-private-worker)
+5. [Referencias y documentación útil](#referencias-y-documentación-útil)
+
+## 📦 Arquitectura
+
+<p align=center><img src=".github/arch.png"></p>
 
 ## Requisitos
 
@@ -24,7 +35,7 @@ El repositorio se encuentra organizado en dos submodulos, Tekton_Back y Tekton_F
 
 ## :hand: Hands On!
 
-### Instalar o actualizar los plugins necesarios del IBM Cloud CLI.
+### Instalar o actualizar los plugins necesarios de IBM Cloud CLI.
 
 Reemplazar `install` con `update` si es el caso:
 
@@ -81,7 +92,7 @@ Para este caso vamos a desplegar la base de datos en un pod separado a nuestra a
 
   Con la IP y el puerto editamos el archivo database.ts ubicado en la carpeta **Tekton_Back/src**, modificando las lineas de conexión con la base de datos, como en la siguiente imagen:
 
-  ### <p align=center><img src=".github/base_de_datos.png" height="250"></p>
+  <p align=center><img src=".github/base_de_datos.png" height="250"></p>
 
 ### <img src=".github/tekton-pipelines.png" height="48"> Desplegar nuestra aplicación con Tekton
 
@@ -89,11 +100,11 @@ Para desplegar nuestra aplicación de Backend, nos dirigimos al repositorio Tekt
 
 **Nota**: El proceso para desplegar nuestra aplicación con Tekton es el mismo tanto para Backend como Frontend.
 
-### <p align=center><img src=".github/tekton-files.png" height="400"></p>
+<p align=center><img src=".github/tekton-files.png" height="400"></p>
 
-1. Nos dirigimos a la página de [IBM Cloud :cloud:](https://cloud.ibm.com), iniciamos sesión y damos clic a la sección de DevOps en el panel lateral izquierdo, como se ve en la imagen.
+1. Nos dirigimos a la página de [IBM Cloud ☁️](https://cloud.ibm.com), iniciamos sesión y damos clic a la sección de DevOps en el panel lateral izquierdo, como se ve en la imagen.
 
-### <p align=center><img src=".github/devops-section.png" height="450"></p>
+<p align=center><img src=".github/devops-section.png" height="450"></p>
 
 2. Procedemos a crear un nuevo toolchain(cadena de herramientas) seleccionando el botón create toolchain.
 
@@ -101,37 +112,31 @@ Para desplegar nuestra aplicación de Backend, nos dirigimos al repositorio Tekt
 
 En la pantalla de creación seleccionamos el recuadro Build your own toolchain en la sección de Other Templates.
 
-### <p align=center><img src=".github/devops-create.png" height="450"></p>
+<p align=center><img src=".github/devops-create.png" height="450"></p>
 
 3. Escogemos el nombre de nuestra toolchain, la región de nuestro cluster y crear.
 
    Nos debe redirigir a la siguiente pantalla.
 
-### <p align=center><img src=".github/devops-home.png"></p>
+<p align=center><img src=".github/devops-home.png"></p>
 
 4. Añadimos las siguientes tools, con la configuración mostrada en las imágenes:
 
 - GitHub. Repositorio utilizado`https://github.com/MGsus/Tekton_Back`
 
-### <p align=center><img src=".github/devops-github.png"></p>
-
-- Delivery Pipeline Private Worker.
-
-Para este paso necesitamos generar una Service ID API Key la cual debemos guardar en el servicio de [IBM Key Protect](https://cloud.ibm.com/docs/ContinuousDelivery?topic=ContinuousDelivery-integrations#keyprotect) para poder usarla más adelante.
-
-### <p align=center><img src=".github/devops-worker.png"></p>
+ <p align=center><img src=".github/devops-github.png"></p>
 
 - Delivery Pipeline.
 
 Escoger en tipo de pipeline, Tekton
 
-### <p align=center><img src=".github/devops-pipe.png"></p>
+ <p align=center><img src=".github/devops-pipe.png"></p>
 
 Así deberá quedar el Toolchain:
 
-### <p align=center><img src=".github/devops-tool.png"></p>
+ <p align=center><img src=".github/devops-tool.png"></p>
 
-Ahora debemos enlazar nuestro Worker con el Pipeline creado en el paso anterior. Para eso ingresamos a nuestro Delivery Pipeline.
+Ahora debemos enlazar el repositorio de la aplicación y el Worker que vamos a usar, con el Pipeline creado en el paso anterior. Para eso ingresamos a nuestro Delivery Pipeline.
 
 En el menú Definitions agregamos nuestro repositorio, como ya se encuentra enlazado nos aparecerá como única opción, y nos reconocerá la carpeta .tekton.
 
@@ -139,7 +144,9 @@ En el menú Definitions agregamos nuestro repositorio, como ya se encuentra enla
 
 Una vez añadido deberá aparecer la definición de nuestro repositorio y guardamos los cambios.
 
-Ahora vamos a la pestaña de Worker, donde seleccionaremos el nombre del Worker que hemos creado en pasos anteriores.
+Ahora vamos a la pestaña de Worker, donde seleccionaremos el worker público que provee IBM Cloud.
+
+**Importante: para utilizar un Private Worker, encontrará los pasos en la sección opcional, Private Worker.**
 
 ### <p align=center><img src=".github/devops-tekworker.png"></p>
 
@@ -161,7 +168,23 @@ Añadimos 3 propiedades de Texto y una propiedad segura, como se muestra en la i
 
 ### <p align=center><img src=".github/devops-envVars.png"></p>
 
-Una vez finalizado esto podemos ir a la pestaña PipelineRuns donde veremos un error
+Una vez finalizado esto podemos ir a la pestaña PipelineRuns y ejecutar manualmente un nuevo pipelineRun.
+
+Finalmente podemos ir a nuestro Pipeline y ejecutar manualmente un nuevo pipelineRun.
+
+### <p align=center><img src=".github/devops-success.png"></p>
+
+---
+
+## Opcional Private Worker
+
+Para utilizar un private worker en lugar del público ofrecido por IBM, necesitamos generar una Service ID API Key la cual debemos guardar en el servicio de [IBM Key Protect](https://cloud.ibm.com/docs/ContinuousDelivery?topic=ContinuousDelivery-integrations#keyprotect) para poder usarla más adelante.
+
+Debemos añadir una nueva tool, Delivery Pipeline Private Worker. Colocamos nuestra ID API Key y el nombre que deseemos y damos clic en crear herramienta.
+
+### <p align=center><img src=".github/devops-worker.png"></p>
+
+En el dashboard de Tekton nos aparecerá un error.
 
 ### <p align=center><img src=".github/devops-workerError.png"></p>
 
@@ -179,9 +202,7 @@ Así debera aparecer nuestra Worker Pool una vez configurado nuestro Worker
 
 ### <p align=center><img src=".github/devops-kubeWorkerConf.png"></p>
 
-Finalmente podemos ir a nuestro Pipeline y ejecutar manualmente un nuevo pipelineRun.
-
-### <p align=center><img src=".github/devops-success.png"></p>
+Ya con esto podemos ir al Dashboard de Tekton y ejecutar manualmente un pipelineRun.
 
 ## Autores
 
