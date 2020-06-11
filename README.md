@@ -176,7 +176,7 @@ Finalmente podemos ir a nuestro Pipeline y ejecutar manualmente un nuevo pipelin
 
 ---
 
-## Opcional Private Worker
+## Extras: Private Worker
 
 Para utilizar un private worker en lugar del público ofrecido por IBM, necesitamos generar una Service ID API Key la cual debemos guardar en el servicio de [IBM Key Protect](https://cloud.ibm.com/docs/ContinuousDelivery?topic=ContinuousDelivery-integrations#keyprotect) para poder usarla más adelante.
 
